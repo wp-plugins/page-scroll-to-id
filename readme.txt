@@ -31,7 +31,7 @@ Plugin home: http://manos.malihu.gr/animate-page-to-id-with-jquery
 
 Out-of-the-box, the plugin is applied to every link with 'm_PageScroll2id' rel attribute value. 
 
-To start using the plugin in your theme, simply add rel="m_PageScroll2id" to any anchor element (<a />) in your markup and give it an href value of the id you wanna scroll to within the page (e.g. href="#targetID"), assuming of course that an element with such id does exist in your document.
+To start using the plugin in your theme, simply add rel="m_PageScroll2id" to any anchor element (a) in your markup and give it an href value of the id you wanna scroll to within the page (e.g. href="#targetID"), assuming of course that an element with such id does exist in your document.
 
 == License ==
 
