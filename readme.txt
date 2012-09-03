@@ -1,7 +1,7 @@
 === Page scroll to id ===
 Donate link: http://manos.malihu.gr/
 Tags: page scrolling, navigation
-Tested up to: 3.2
+Tested up to: 3.4.1
 License: GPLv2 or later
 
 Animated page scrolling to specific id within the document.
@@ -17,13 +17,16 @@ Plugin home: http://manos.malihu.gr/animate-page-to-id-with-jquery
 
 == Changelog ==
 
+= Version 1.1 (SEP 3, 2012) =
+* Removed the hard-coded plugin directory URL in order to fix errors of .js files pointing to a wrong location.
+
 = Version 1.0 (APR 1, 2012) =
 * Launch!
 
 == Installation ==
 
 1. Open 'wp-content/plugins' folder
-2. Put folder 'malihu-pagescroll2id'
+2. Put folder 'page-scroll-to-id'
 3. Activate 'Page Scroll to id' Plugin through the 'Plugins' menu in WordPress
 4. Go to 'WP-Admin -> settings -> 'Page Scroll to id' to configure plugin options.
 
@@ -31,7 +34,7 @@ Plugin home: http://manos.malihu.gr/animate-page-to-id-with-jquery
 
 Out-of-the-box, the plugin is applied to every link with 'm_PageScroll2id' rel attribute value. 
 
-To start using the plugin in your theme, simply add rel="m_PageScroll2id" to any anchor element (a) in your markup and give it an href value of the id you wanna scroll to within the page (e.g. href="#targetID"), assuming of course that an element with such id does exist in your document.
+To start using the plugin in your theme, simply add rel="m_PageScroll2id" to any anchor element (<a />) in your markup and give it an href value of the id you wanna scroll to within the page (e.g. href="#targetID"), assuming of course that an element with such id does exist in your document.
 
 == License ==
 
