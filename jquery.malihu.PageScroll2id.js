@@ -14,8 +14,9 @@
 			};
 			var options=$.extend(defaults,options);
 			$().mPageScroll2id("checkTouchDevice");
-			var scrollElem="html";
-			if($.browser.webkit){ //animate body for webkit browsers that don't support html animation
+			var ua=navigator.userAgent,
+				scrollElem="html";
+			if(ua.indexOf(' AppleWebKit/')!==-1){ //animate body for webkit browsers that don't support html animation
 				scrollElem="body";
 			}
 			//store options, global animation state

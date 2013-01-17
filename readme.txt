@@ -17,6 +17,9 @@ Plugin home: http://manos.malihu.gr/animate-page-to-id-with-jquery
 
 == Changelog ==
 
+= Version 1.2 (JAN 17, 2012) =
+* Added support for jQuery 1.9+.
+
 = Version 1.1 (SEP 3, 2012) =
 * Removed the hard-coded plugin directory URL in order to fix errors of .js files pointing to a wrong location.
 
