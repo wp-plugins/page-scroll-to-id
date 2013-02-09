@@ -1,8 +1,10 @@
 === Page scroll to id ===
 Donate link: http://manos.malihu.gr/
-Tags: page scrolling, navigation
-Tested up to: 3.4.1
+Tags: page scrolling, page animation, navigation, single-page navigation
+Tested up to: 3.5.1
+Stable tag: 1.2
 License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Animated page scrolling to specific id within the document.
 
@@ -17,7 +19,7 @@ Plugin home: http://manos.malihu.gr/animate-page-to-id-with-jquery
 
 == Changelog ==
 
-= Version 1.2 (JAN 17, 2013) =
+= Version 1.2 (FEB 9, 2013) =
 * Added support for jQuery 1.9+.
 
 = Version 1.1 (SEP 3, 2012) =

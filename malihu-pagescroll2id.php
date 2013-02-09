@@ -3,7 +3,7 @@
 Plugin Name: Page Scroll to id
 Plugin URI: http://manos.malihu.gr/animate-page-to-id-with-jquery
 Description: Animated page scrolling to specific id within the document
-Version: 1.1
+Version: 1.2
 Author: malihu
 Author URI: http://manos.malihu.gr
 License: GNU GENERAL PUBLIC LICENSE Version 3
@@ -16,9 +16,9 @@ define('malihuPageScroll2id_url',plugin_dir_url(__FILE__));
 function malihuPageScroll2id_setup(){
 	wp_enqueue_script("jquery");
 	wp_enqueue_script("jquery-effects-core");
-	wp_register_script("jquery-malihu-PageScroll2id", malihuPageScroll2id_url."jquery.malihu.PageScroll2id.js",array("jquery","jquery-effects-core"), "1.1",1);
+	wp_register_script("jquery-malihu-PageScroll2id", malihuPageScroll2id_url."jquery.malihu.PageScroll2id.js",array("jquery","jquery-effects-core"), "1.2",1);
 	wp_enqueue_script("jquery-malihu-PageScroll2id");
-	wp_register_script("jquery-malihu-PageScroll2id-init", malihuPageScroll2id_url."jquery.malihu.PageScroll2id-init.js",array("jquery","jquery-effects-core","jquery-malihu-PageScroll2id"), "1.1",1);
+	wp_register_script("jquery-malihu-PageScroll2id-init", malihuPageScroll2id_url."jquery.malihu.PageScroll2id-init.js",array("jquery","jquery-effects-core","jquery-malihu-PageScroll2id"), "1.2",1);
 	wp_enqueue_script("jquery-malihu-PageScroll2id-init");
 }
 
