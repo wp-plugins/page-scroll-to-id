@@ -1,49 +1,145 @@
 === Page scroll to id ===
-Donate link: http://manos.malihu.gr/
+Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=UYJ5G65M6ZA28
 Tags: page scrolling, page animation, navigation, single-page navigation
-Tested up to: 3.5.1
-Stable tag: 1.2
+Requires at least: 3.1
+Tested up to: 3.8
+Stable tag: 1.5.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Animated page scrolling to specific id within the document.
+Page scroll to id is an easy-to-use jQuery plugin that enables animated page scrolling to specific id within the document.
 
 == Description ==
 
-Easy to use jQuery plugin you can use for simple back-to-top links or complex single-page websites menus. It enables in-page navigation by scrolling the page to specific sections within the document. Simple to implement and configure. Features include smart animation speed and easing, vertical and horizontal scrolling etc.
+The plugin replaces the default browser behaviour of "jumping" to page sections when links with href value containing `#` are clicked, by smoothly animating the page to those sections. You can use it for simple back-to-top links or complex, single-page website navigation and features include: 
 
-== info ==
+* Auto-adjustable animation speed
+* Advanced animation easings
+* Vertical and/or horizontal scrolling
+* Links and targets highlighting via ready-to-use classes
+* Auto-adjustable Scroll-to position and user defined offset
 
-Plugin author: malihu (http://manos.malihu.gr)
-Plugin home: http://manos.malihu.gr/animate-page-to-id-with-jquery
+= Demo =
 
-== Changelog ==
+* [Plugin demo: vertical layout](http://manos.malihu.gr/repository/page-scroll-to-id/demo/demo.html) 
+* [Plugin demo: horizontal layout](http://manos.malihu.gr/repository/page-scroll-to-id/demo/demo-horizontal-layout.html) 
+* [Plugin demo: auto layout](http://manos.malihu.gr/repository/page-scroll-to-id/demo/demo-auto-layout.html) 
 
-= Version 1.2 (FEB 9, 2013) =
-* Added support for jQuery 1.9+.
+= Requirements =
 
-= Version 1.1 (SEP 3, 2012) =
-* Removed the hard-coded plugin directory URL in order to fix errors of .js files pointing to a wrong location.
+Page scroll to id requires WordPress version **3.1** or higher and jQuery version **1.6.0** or higher (jQuery 1.6.1 was included in WordPress 3.2). For older installations use plugin version 1.2.0 or implement it in your theme manually. 
 
-= Version 1.0 (APR 1, 2012) =
-* Launch!
+= Quick usage =
+
+1. [Install the plugin](http://wordpress.org/plugins/page-scroll-to-id/installation/). 
+2. Add `rel="m_PageScroll2id"` to your links that point to existing sections within your page, making sure each link's href value contains a hash (`#`) with the id of the section you want to scroll-to. 
+
+For more information see plugin resources below. 
+
+= Plugin Resources =
+
+* [Plugin homepage](http://manos.malihu.gr/page-scroll-to-id/)
+* [FAQ](http://wordpress.org/plugins/page-scroll-to-id/faq/)
+* [Support](http://wordpress.org/support/plugin/page-scroll-to-id)
 
 == Installation ==
 
-1. Open 'wp-content/plugins' folder
-2. Put folder 'page-scroll-to-id'
-3. Activate 'Page Scroll to id' Plugin through the 'Plugins' menu in WordPress
-4. Go to 'WP-Admin -> settings -> 'Page Scroll to id' to configure plugin options.
+= Automatic =
 
-== Usage ==
+1. Click 'Add New' under 'Plugins' menu in WordPress. 
+2. Perform a search for the term 'Page scroll to id' and in search results, click 'Install/Install Now' under plugin name. 
+3. When installation is finished, click 'Activate Plugin'. 
 
-Out-of-the-box, the plugin is applied to every link with 'm_PageScroll2id' rel attribute value. 
+= Manual =
 
-To start using the plugin in your theme, simply add rel="m_PageScroll2id" to any anchor element in your markup and give it an href value of the id you wanna scroll to within the page (e.g. href="#targetID"), assuming of course that an element with such id does exist in your document.
+1. Download and extract the plugin. 
+2. Upload the entire `page-scroll-to-id` folder to `/wp-content/plugins/` directory. 
+3. Activate the plugin through the 'Plugins' menu in WordPress. 
+
+= Configuration =
+
+Configure plugin options by clicking 'Settings' or through the 'Settings > Page Scroll to id' menu in WordPress. 
+
+== Frequently Asked Questions ==
+
+= How to use the plugin with WP custom/native menus? =
+
+While on the 'Menus' admin page, click 'Screen Options' and check 'Link Relationship (XFN)'. To enable the plugin on a menu item, click the arrow on the right of the item and insert `m_PageScroll2id` in the 'Link Relationship (XFN)' field (assuming your menu contains links with `URL` value in the form of `#id`). 
+
+= How to use the plugin without editing my theme's markup? =
+
+In plugin's configuration page ('Settings > Page Scroll to id' menu in WordPress), you can change the `Selector(s)` field value to existing matching sets of elements in your theme. For example: `a.class-name`, `#id a`, `a[href*='#']` etc. For multiple selectors, use comma separated values: e.g. `a[rel='m_PageScroll2id'], a.class-name`.
+
+= What if my links have rel values already set by the theme or other plugins? =
+
+You can add the `m_PageScroll2id` in your link's rel attribute (along with the other values) and change the `Selector(s)` field value to `a[rel~='m_PageScroll2id']` in plugin settings. 
+
+= How do I highlight current menu items? =
+
+The plugin provides a ready-to-use class for styling highlighted links (the links whose target element is considered to be within the viewport). The default highlight class is `mPS2id-highlight`, so you can use it in your theme's CSS to style current menu items, e.g. `.menu-item a.mPS2id-highlight{ background: #ff0; }`
+
+= When I click the link, nothing happens... =
+
+Make sure your link has href value `#` with the id of the section you want to scroll-to (e.g. `<a href="#id" rel="m_PageScroll2id">link</a>`) and a section with such an id exists in your page (e.g. `<div id="id">target</div>`). 
+
+= The page doesn't scroll exactly where I want =
+
+The scroll-to position is the top position of your target element. Your target's top position does not include its margins, so make sure to check your element's actual position via your browser's developer tools and change your CSS if needed. You can also offset the scroll-to position by setting an `offset` value (in pixels) in plugin's settings. 
+
+= The page doesn't scroll to the very top =
+
+Your target element is probably not at the very top (check its position via your browser's developer tools). If your link has href value `#top` and no target with id `top` exists in your page, the plugin will automatically scroll the page to the very top (the position of the `body` tag). 
+
+= Can I use the plugin to scroll an overflowed div? =
+
+No. The plugin scrolls the entire page (the document's root element) so it works correctly highlighting links, alongside deep linking plugins etc. with mouse and touch events. 
+
+= Do you support Internet Explorer 7? =
+
+No. IE7 usage is non-existent. 
+
+= Does the plugin offer user defined callbacks, scroll-to method or some other advanced feature? =
+
+Yes but you probably need to implement the plugin in your theme **manually**. See [Plugin homepage](http://manos.malihu.gr/page-scroll-to-id/) for more info.
+
+== Screenshots ==
+
+1. Page scoll to id settings 
+
+2. Page scoll to id settings help 
+
+== Changelog ==
+
+= 1.5.0 =
+* Dropped jQuery UI dependency (jQuery UI is no longer required for the plugin to work). 
+* Fixed the bug of non-working links to other pages. The script now checks if href values refer to the parent document, before preventing the default behavior. 
+* Fixed the bug regarding selectors referencing body class not working. 
+* Any link handled by the plugin with href value `#top` will now scroll the page to top, if no element with id `top` exists.  
+* Added links highlighting feature. The script adds a class (default: `mPS2id-highlight`) automatically on links  whose target elements are considered to be within the viewport. 
+* Plugin adds a class (default: `mPS2id-target`) automatically on targets that are considered to be within the viewport. 
+* Plugin adds a class (default: `mPS2id-clicked`) automatically on the link that has been clicked. 
+* Added `offset` option: Offsets scroll-to position by x amount of pixels (positive or negative). 
+* The plugin script now fully validates href values and ids before scrolling the page. 
+* Fixed varius minor bugs. 
+* Code rewritten and optimized for better performance and maintenance. 
+* For more see [Plugin changelog](http://manos.malihu.gr/page-scroll-to-id/4/). 
+
+= 1.2.0 =
+* Added support for jQuery version 1.9.
+
+= 1.1.0 =
+* Removed the hard-coded plugin directory URL in order to fix errors of pointing .js files to a wrong location.
+
+= 1.0.0 =
+* Launch!
+
+== Upgrade Notice ==
+
+= 1.5.0 =
+
+Dropped jQuery UI dependency, fixed bugs, added links highlighting, optimized scripts and extended documentation. 
 
 == License ==
-
-This plugin, as with everything I publish on http://manos.malihu.gr, is completely free for personal and commercial use. 
 
 GPLv3
 
@@ -54,4 +150,4 @@ If not, see <http://www.gnu.org/licenses/>.
 
 == Donate ==
 
-If you feel like it, you can make a donation by visiting http://manos.malihu.gr. I greatly appreciate your support to continue updating, developing and sharing cool stuff.
+If you like this plugin and find it useful, consider making a [donation](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=UYJ5G65M6ZA28) :).
