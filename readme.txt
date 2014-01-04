@@ -1,9 +1,9 @@
 === Page scroll to id ===
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=UYJ5G65M6ZA28
 Tags: page scrolling, page animation, navigation, single-page navigation
-Requires at least: 3.1
+Requires at least: 3.3
 Tested up to: 3.8
-Stable tag: 1.5.0
+Stable tag: 1.5.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -27,7 +27,7 @@ The plugin replaces the default browser behaviour of "jumping" to page sections 
 
 = Requirements =
 
-Page scroll to id requires WordPress version **3.1** or higher and jQuery version **1.6.0** or higher (jQuery 1.6.1 was included in WordPress 3.2). For older installations use plugin version 1.2.0 or implement it in your theme manually. 
+Page scroll to id requires WordPress version **3.3** or higher and jQuery version **1.6.0** or higher. For older installations implement it in your theme manually. 
 
 = Quick usage =
 
@@ -109,6 +109,10 @@ Yes but you probably need to implement the plugin in your theme **manually**. Se
 2. Page scoll to id settings help 
 
 == Changelog ==
+
+= 1.5.1 =
+* Minor code tweaks
+* Minified scripts
 
 = 1.5.0 =
 * Dropped jQuery UI dependency (jQuery UI is no longer required for the plugin to work). 

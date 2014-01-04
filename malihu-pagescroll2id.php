@@ -3,7 +3,7 @@
 Plugin Name: Page scroll to id
 Plugin URI: http://manos.malihu.gr/page-scroll-to-id
 Description: Page scroll to id is an easy-to-use jQuery plugin that enables animated page scrolling to specific id within the document. 
-Version: 1.5.0
+Version: 1.5.1
 Author: malihu
 Author URI: http://manos.malihu.gr
 License: GNU GENERAL PUBLIC LICENSE Version 3
@@ -40,7 +40,7 @@ if(!class_exists('malihuPageScroll2id')){ // --edit--
 	
 	class malihuPageScroll2id{ // --edit--
 		
-		protected $version='1.5.0'; // Plugin version --edit--
+		protected $version='1.5.1'; // Plugin version --edit--
 		protected $update_option=null;
 		
 		protected $plugin_name='Page scroll to id'; // Plugin name --edit--
@@ -59,8 +59,8 @@ if(!class_exists('malihuPageScroll2id')){ // --edit--
 		protected $plugin_init_script='jquery.malihu.PageScroll2id-init.js'; // Plugin public initialization script --edit--
 		
 		private function __construct(){
-			// Plugin requires WP version 3.1 or higher
-			if(get_bloginfo('version') < '3.1'){
+			// Plugin requires WP version 3.3 or higher
+			if(get_bloginfo('version') < '3.3'){
 				add_action('admin_notices', array($this, 'admin_notice_wp_version'));
 				return;
 			}
@@ -104,7 +104,7 @@ if(!class_exists('malihuPageScroll2id')){ // --edit--
 		
 		// WP version notice
 		public function admin_notice_wp_version(){
-			_e('<div class="error"><p>'.$this->plugin_name.' requires WordPress version 3.1 or higher. Deactivate the plugin and reactivate when WordPress is updated.</p></div>', $this->plugin_slug);
+			_e('<div class="error"><p>'.$this->plugin_name.' requires WordPress version 3.3 or higher. Deactivate the plugin and reactivate when WordPress is updated.</p></div>', $this->plugin_slug);
 		}
 		
 		// Plugin localization (load plugin textdomain)
