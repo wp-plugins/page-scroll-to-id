@@ -3,7 +3,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: page scrolling, page animation, navigation, single-page navigation
 Requires at least: 3.3
 Tested up to: 3.8
-Stable tag: 1.5.1
+Stable tag: 1.5.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -109,6 +109,9 @@ Yes but you probably need to implement the plugin in your theme **manually**. Se
 2. Page scoll to id settings help 
 
 == Changelog ==
+
+= 1.5.2 =
+* Minor code tweaks
 
 = 1.5.1 =
 * Minor code tweaks

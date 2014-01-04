@@ -3,7 +3,7 @@
 Plugin Name: Page scroll to id
 Plugin URI: http://manos.malihu.gr/page-scroll-to-id
 Description: Page scroll to id is an easy-to-use jQuery plugin that enables animated page scrolling to specific id within the document. 
-Version: 1.5.1
+Version: 1.5.2
 Author: malihu
 Author URI: http://manos.malihu.gr
 License: GNU GENERAL PUBLIC LICENSE Version 3
@@ -40,7 +40,7 @@ if(!class_exists('malihuPageScroll2id')){ // --edit--
 	
 	class malihuPageScroll2id{ // --edit--
 		
-		protected $version='1.5.1'; // Plugin version --edit--
+		protected $version='1.5.2'; // Plugin version --edit--
 		protected $update_option=null;
 		
 		protected $plugin_name='Page scroll to id'; // Plugin name --edit--
@@ -153,7 +153,6 @@ if(!class_exists('malihuPageScroll2id')){ // --edit--
 			wp_register_script($this->plugin_slug.'-plugin-init-script', plugins_url('js/'.$this->plugin_init_script, __FILE__), array('jquery', $this->plugin_slug.'-plugin-script'), $this->version, 1);
 			wp_enqueue_script($this->plugin_slug.'-plugin-init-script');
 			$this->plugin_fn_call();
-			//$this->add_plugin_shortcode(); // Remove/comment for plugin without any shortcodes --edit-- 
 		}
 		
 		public function add_plugin_admin_menu(){
@@ -295,23 +294,6 @@ if(!class_exists('malihuPageScroll2id')){ // --edit--
 				'shortcode_class' => $this->sc_pfx
 			);
 			wp_localize_script($this->plugin_slug.'-plugin-init-script', $this->pl_pfx.'params', $params);
-		}
-		
-		public function add_plugin_shortcode(){
-			$pl_shortcodes=array();
-			$instances=get_option($this->db_prefix.'instances');
-			for($i=1; $i<=count($instances); $i++){
-				$pl_shortcodes[]='pl_shortcode_fn_'.$i;
-				$shortcode_class=$this->sc_pfx;
-				// --edit--
-				$pl_shortcodes[$i]=function($atts, $content=null) use ($i,$shortcode_class){
-					extract(shortcode_atts(array( 
-						'att' => '',
-					), $atts));
-					return '';
-				};
-				add_shortcode($this->sc_pfx.$i, $pl_shortcodes[$i]);
-			}
 		}
 		
 		public function validate_plugin_settings(){
