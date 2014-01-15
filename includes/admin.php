@@ -2,7 +2,7 @@
 // --edit--
 $repeatables=false; 
 $shortcodes=false;
-$plugin_info=__('<a href="#" class="mPS2id-open-help mPS2id-open-help-overview">Overview</a>&nbsp;&nbsp;&nbsp;<a href="#" class="mPS2id-open-help mPS2id-open-help-get-started">Get started</a>&nbsp;&nbsp;&nbsp;<a href="#" class="mPS2id-open-help mPS2id-open-help-plugin-settings">Plugin settings</a>', $this->plugin_slug);
+$plugin_info=__('<a href="#" class="mPS2id-open-help mPS2id-open-help-overview">Overview</a>&nbsp;&nbsp;&nbsp;<a href="#" class="mPS2id-open-help mPS2id-open-help-get-started">Get started</a>&nbsp;&nbsp;&nbsp;<a href="#" class="mPS2id-open-help mPS2id-open-help-plugin-settings">Plugin settings</a>&nbsp;&nbsp;&nbsp;<a href="#" class="mPS2id-open-help mPS2id-open-help-shortcodes">Shortcodes</a>', $this->plugin_slug);
 $btn_add=__('Add instance', $this->plugin_slug);
 $btn_more_actions=__('More actions', $this->plugin_slug);
 $btn_reset=($repeatables) ? __('Delete all and reset to default', $this->plugin_slug) : __('Reset to default', $this->plugin_slug);
@@ -25,7 +25,7 @@ $toggle_instance_title=__('Click to toggle', $this->plugin_slug);
 					<?php include_once(plugin_dir_path( __FILE__ ).'help/overview.inc'); ?>
 					<p>
 						<strong>For more information</strong> <br />
-						<a href="http://manos.malihu.gr" target="_blank">Plugin homepage</a>&nbsp;&nbsp;&nbsp;<a href="http://manos.malihu.gr" target="_blank">Plugin documentation</a>
+						<a href="http://manos.malihu.gr/page-scroll-to-id" target="_blank">Plugin homepage</a>&nbsp;&nbsp;&nbsp;<a href="http://manos.malihu.gr/page-scroll-to-id/2/" target="_blank">Code examples &amp; short tutorials</a>
 					</p>
 				</div>
 				<div class="oldwp-plugin-help-section oldwp-plugin-help-section-get-started">
@@ -33,6 +33,9 @@ $toggle_instance_title=__('Click to toggle', $this->plugin_slug);
 				</div>
 				<div class="oldwp-plugin-help-section oldwp-plugin-help-section-plugin-settings">
 					<?php include_once(plugin_dir_path( __FILE__ ).'help/plugin-settings.inc'); ?>
+				</div>
+				<div class="oldwp-plugin-help-section oldwp-plugin-help-section-shortcodes">
+					<?php include_once(plugin_dir_path( __FILE__ ).'help/shortcodes.inc'); ?>
 				</div>
 			</div>
 		<?php endif; ?>

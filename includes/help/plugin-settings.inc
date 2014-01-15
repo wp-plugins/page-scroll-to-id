@@ -33,7 +33,9 @@ $help_plugin_settings_text=<<<EOD
 
 <p>
 	<strong>Offset</strong> - 
-	Defines the amount of pixels to offset the scroll-to position. The value can a be a positive or negative number. For example, setting offset to 50 will stop page scrolling 50 pixels before reaching the target.
+	Defines the amount of pixels to offset the scroll-to position. The value can a be a positive or negative number, or a matching element in your html. For example, setting Offset to 50 will stop page scrolling 50 pixels before reaching the target. <br />
+	If you need to offset scroll-to position accoring to the height or width of some element (e.g. accoring to a responsive, fixed-positioned navigation menu), insert its selector in the Offset field. For example, if you have a fixed menu with id <code>navigation-menu</code>, set Offset to <code>#navigation-menu</code> in order to stop page scrolling below it and avoid overlapping your content. <br />
+	You may also define link specific offsets by using the <code>ps2id</code> shortcode in your content, e.g. <code>[ps2id url='#id' offset='100']link[/ps2id]</code>. 
 </p>
 
 <p>
@@ -45,10 +47,16 @@ $help_plugin_settings_text=<<<EOD
 
 <p>
 	<strong>Classes</strong> - 
-	Set the classes added to links by the plugin: <br />
-	1. The class name for the link that's been clicked <br />
-	2. The class name for the (current) target element<br />
-	3. The class name for the (current) highlighted link <br />
+	Set the classes added to links by the plugin: 
+</p>
+
+<ol>
+	<li>The class name for the link that's been clicked </li>
+	<li>The class name for the (current) target element </li>
+	<li>The class name for the (current) highlighted link </li>
+</ol>
+
+<p>
 	By checking "Force single highlight", only one highlighted element is allowed at a time.
 </p>
 

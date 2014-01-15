@@ -176,6 +176,11 @@
 			openHelp("plugin-settings");
 		});
 		
+		$(".mPS2id-open-help-shortcodes").click(function(e){
+			e.preventDefault();
+			openHelp("shortcodes");
+		});
+		
 		function openHelp(tab){
 			if(wpVersion>=3.6){ //WP Contextual Help
 				if(tab){

@@ -25,6 +25,10 @@ $help_get_started_text=<<<EOD
 	<code>a.mPS2id-highlight{ background: #ff0; }</code> or <code>.menu-item a.mPS2id-highlight{ background: #ff0; }</code> for highlighting custom menus links only.
 </p>
 
+<p>
+	If you have a fixed-positioned menu which overlaps your target's content when page scrolling is completed, insert your menu selector in the Offset field. For example, inserting <code>#navigation-menu</code> will offset the scroll-to position according to the height/width/position of the element with id <code>navigation-menu</code>. 
+</p>
+
 EOD;
 ?>
 

@@ -3,30 +3,35 @@
 Plugin Name: Page scroll to id
 Plugin URI: http://manos.malihu.gr/page-scroll-to-id
 Description: Page scroll to id is an easy-to-use jQuery plugin that enables animated page scrolling to specific id within the document. 
-Version: 1.5.2
+Version: 1.5.3
 Author: malihu
 Author URI: http://manos.malihu.gr
-License: GNU GENERAL PUBLIC LICENSE Version 3
+License: MIT License (MIT)
 */
 
 /*
 Copyright 2013  malihu  (email: manos@malihu.gr)
 
-This program is free software; you can redistribute it and/or modify
-it under the terms of the GNU General Public License, version 3, as 
-published by the Free Software Foundation.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
 
-You should have received a copy of the GNU General Public License
-along with this program; if not, write to the Free Software
-Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
 */
 
-if(basename($_SERVER['SCRIPT_NAME'])==basename(__FILE__))exit(':)');
+if(!defined('WPINC')){ die; } // Abort if file is called directly
 
 if(!class_exists('malihuPageScroll2id')){ // --edit--
 	
@@ -40,14 +45,14 @@ if(!class_exists('malihuPageScroll2id')){ // --edit--
 	
 	class malihuPageScroll2id{ // --edit--
 		
-		protected $version='1.5.2'; // Plugin version --edit--
+		protected $version='1.5.3'; // Plugin version --edit--
 		protected $update_option=null;
 		
 		protected $plugin_name='Page scroll to id'; // Plugin name --edit--
 		protected $plugin_slug='page-scroll-to-id'; // Plugin slug --edit--
 		protected $db_prefix='page_scroll_to_id_'; // Database field plugin prefix --edit--
 		protected $pl_pfx='mPS2id_'; // Plugin prefix --edit--
-		protected $sc_pfx='ps2id'; // Shortcode prefix (remove trailing "-" for single shortcode) --edit--
+		protected $sc_pfx='ps2id'; // Shortcode prefix --edit--
 		
 		protected static $instance=null;
 		protected $plugin_screen_hook_suffix=null;
@@ -91,20 +96,13 @@ if(!class_exists('malihuPageScroll2id')){ // --edit--
 			if(null==self::$instance){
 				self::$instance=new self;
 			}
+			
 			return self::$instance;
-		}
-		
-		public static function activate(){
-			// TODO: Define activation functionality here
-		}
-		
-		public static function deactivate(){
-			// TODO: Define deactivation functionality here
 		}
 		
 		// WP version notice
 		public function admin_notice_wp_version(){
-			_e('<div class="error"><p>'.$this->plugin_name.' requires WordPress version 3.3 or higher. Deactivate the plugin and reactivate when WordPress is updated.</p></div>', $this->plugin_slug);
+			_e('<div class="error"><p><strong>'.$this->plugin_name.'</strong> requires WordPress version <strong>3.3</strong> or higher. Deactivate the plugin and reactivate when WordPress is updated.</p></div>', $this->plugin_slug);
 		}
 		
 		// Plugin localization (load plugin textdomain)
@@ -153,6 +151,7 @@ if(!class_exists('malihuPageScroll2id')){ // --edit--
 			wp_register_script($this->plugin_slug.'-plugin-init-script', plugins_url('js/'.$this->plugin_init_script, __FILE__), array('jquery', $this->plugin_slug.'-plugin-script'), $this->version, 1);
 			wp_enqueue_script($this->plugin_slug.'-plugin-init-script');
 			$this->plugin_fn_call();
+			$this->add_plugin_shortcode(); // Remove/comment for plugin without any shortcodes --edit-- 
 		}
 		
 		public function add_plugin_admin_menu(){
@@ -176,7 +175,7 @@ if(!class_exists('malihuPageScroll2id')){ // --edit--
 				add_settings_section(
 					$this->db_prefix.'settings_section'.$this->index,
 					null,
-					null,
+					'__return_false', // instead of null to avoid wp <3.4.1 warnings (https://core.trac.wordpress.org/ticket/21630)
 					$this->plugin_slug
 				);
 				// Add settings fields for each section
@@ -291,9 +290,30 @@ if(!class_exists('malihuPageScroll2id')){ // --edit--
 			$params=array(
 				'instances' => $instances,
 				'total_instances' => count($instances),
-				'shortcode_class' => $this->sc_pfx
+				'shortcode_class' => '_'.$this->sc_pfx
 			);
 			wp_localize_script($this->plugin_slug.'-plugin-init-script', $this->pl_pfx.'params', $params);
+		}
+		
+		public function add_plugin_shortcode(){
+			$pl_shortcodes=array();
+			$instances=get_option($this->db_prefix.'instances');
+			for($i=1; $i<=count($instances); $i++){
+				$pl_shortcodes[]='pl_shortcode_fn_'.$i;
+				// --edit--
+				$tag=$shortcode_class=$this->sc_pfx; // Shortcode without suffix 
+				//$tag=$shortcode_class=$this->sc_pfx.'_'.$i; // Shortcode with suffix 
+				$pl_shortcodes[$i]=create_function('$atts,$content=null','
+					extract(shortcode_atts(array( 
+						"i" => "'.$i.'",
+						"shortcode_class" => "_'.$shortcode_class.'",
+						"url" => "",
+						"offset" => "",
+					), $atts));
+					return "<a href=\"".$url."\" class=\"".$shortcode_class."\" data-ps2id-offset=\"".esc_attr($offset)."\">".do_shortcode($content)."</a>";
+				');
+				add_shortcode($tag, $pl_shortcodes[$i]);
+			}
 		}
 		
 		public function validate_plugin_settings(){
@@ -315,18 +335,18 @@ if(!class_exists('malihuPageScroll2id')){ // --edit--
 		
 		public function sanitize_input($type, $val, $def){
 			switch($type){
-				case 'text':
+				case 'text': // General
 					$val=(empty($val)) ? $def : sanitize_text_field($val);
 					break;
-				case 'number':
+				case 'number': // Positive number
 					$val=(int) preg_replace('/\D/', '', $val);
 					break;
-				case 'integer':
+				case 'integer': // Positive or negative number
 					$s=strpos($val, '-');
 					$n=(int) preg_replace('/\D/', '', $val);
 					$val=($s===false) ? $n : '-'.$n;
 					break;
-				case 'class':
+				case 'class': // Class name
 					$val=sanitize_html_class($val, $def);
 					break;
 			}
@@ -387,7 +407,7 @@ if(!class_exists('malihuPageScroll2id')){ // --edit--
 			delete_option('malihu_pagescroll2id_layout');
 		}
 		
-		public function debug_to_console($data){
+		private function debug_to_console($data){
 			/* 
 			This is just a helper function that sends debug code to the Javascript console 
 			Usage: $this->debug_to_console('hello world'); 
@@ -413,6 +433,10 @@ if(!class_exists('malihuPageScroll2id')){ // --edit--
 					$help_plugin_settings=ob_get_contents();
 					ob_end_clean();
 					ob_start();
+					include_once(plugin_dir_path( __FILE__ ).'includes/help/shortcodes.inc');
+					$help_plugin_shortcodes=ob_get_contents();
+					ob_end_clean();
+					ob_start();
 					include_once(plugin_dir_path( __FILE__ ).'includes/help/sidebar.inc');
 					$help_sidebar=ob_get_contents();
 					ob_end_clean();
@@ -431,6 +455,11 @@ if(!class_exists('malihuPageScroll2id')){ // --edit--
 							'id' => $this->plugin_slug.'plugin-settings',
 							'title' => 'Plugin settings',
 							'content' => $help_plugin_settings,
+						));
+						$screen->add_help_tab(array(
+							'id' => $this->plugin_slug.'shortcodes',
+							'title' => 'Shortcodes',
+							'content' => $help_plugin_shortcodes,
 						));
 						$screen->set_help_sidebar($help_sidebar);
 					}
@@ -466,7 +495,7 @@ if(!class_exists('malihuPageScroll2id')){ // --edit--
 					$v4=$_POST[$this->db_prefix.$i.'_scrollingEasing'];
 					$v5=(isset($_POST[$this->db_prefix.$i.'_pageEndSmoothScroll'])) ? 'true' : 'false';
 					$v6=$_POST[$this->db_prefix.$i.'_layout'];
-					$v7=$this->sanitize_input('integer', $_POST[$this->db_prefix.$i.'_offset'], $d7);
+					$v7=$this->sanitize_input('text', $_POST[$this->db_prefix.$i.'_offset'], $d7);
 					$v8=(empty($_POST[$this->db_prefix.$i.'_highlightSelector'])) ? $d8 : $this->sanitize_input('text', $_POST[$this->db_prefix.$i.'_highlightSelector'], $d8);
 					$v9=$this->sanitize_input('class', $_POST[$this->db_prefix.$i.'_clickedClass'], $d9);
 					$v10=$this->sanitize_input('class', $_POST[$this->db_prefix.$i.'_targetClass'], $d10);
@@ -616,12 +645,12 @@ if(!class_exists('malihuPageScroll2id')){ // --edit--
 					'value' => $v7,
 					'values' => null,
 					'id' => $this->db_prefix.$i.'_offset',
-					'field_type' => 'text-integer',
+					'field_type' => 'text',
 					'label' => 'Offset',
 					'checkbox_label' => null,
 					'radio_labels' => null,
 					'field_info' => 'pixels',
-					'description' => 'Offset scroll-to position by x amount of pixels (positive or negative)',
+					'description' => 'Offset scroll-to position by x amount of pixels (positive or negative) or by selector (e.g. <code>#navigation-menu</code>)',
 					'wrapper' => null
 				),
 				'highlightSelector' => array(
@@ -692,9 +721,6 @@ if(!class_exists('malihuPageScroll2id')){ // --edit--
 }
 
 if(class_exists('malihuPageScroll2id')){ // --edit--
-	
-	register_activation_hook(__FILE__, array('malihu-plugin', 'activate')); // --edit--
-	register_deactivation_hook(__FILE__, array('malihu-plugin', 'deactivate')); // --edit--
 
 	malihuPageScroll2id::get_instance(); // --edit--
 

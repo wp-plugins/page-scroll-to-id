@@ -3,7 +3,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: page scrolling, page animation, navigation, single-page navigation
 Requires at least: 3.3
 Tested up to: 3.8
-Stable tag: 1.5.2
+Stable tag: 1.5.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -17,7 +17,8 @@ The plugin replaces the default browser behaviour of "jumping" to page sections 
 * Advanced animation easings
 * Vertical and/or horizontal scrolling
 * Links and targets highlighting via ready-to-use classes
-* Auto-adjustable Scroll-to position and user defined offset
+* Auto-adjustable scroll-to position 
+* Advanced scroll-to position offset (by pixels, by element selector, link specific offsets etc.) 
 
 = Demo =
 
@@ -82,6 +83,10 @@ The plugin provides a ready-to-use class for styling highlighted links (the link
 
 Make sure your link has href value `#` with the id of the section you want to scroll-to (e.g. `<a href="#id" rel="m_PageScroll2id">link</a>`) and a section with such an id exists in your page (e.g. `<div id="id">target</div>`). 
 
+= How do I make my links work from other/different pages =
+
+To make your links work from any page, you need to add the full address in your links href (instead of just the hash with the id). For example, you'll need to change `<a href="#id" rel="m_PageScroll2id">link</a>` to something like `<a href="http://mysite.com/some-page/#id" rel="m_PageScroll2id">link</a>`. The same applies for your WP custom menus. You'll need to insert the full address in the `URL` field. 
+
 = The page doesn't scroll exactly where I want =
 
 The scroll-to position is the top position of your target element. Your target's top position does not include its margins, so make sure to check your element's actual position via your browser's developer tools and change your CSS if needed. You can also offset the scroll-to position by setting an `offset` value (in pixels) in plugin's settings. 
@@ -89,6 +94,14 @@ The scroll-to position is the top position of your target element. Your target's
 = The page doesn't scroll to the very top =
 
 Your target element is probably not at the very top (check its position via your browser's developer tools). If your link has href value `#top` and no target with id `top` exists in your page, the plugin will automatically scroll the page to the very top (the position of the `body` tag). 
+
+= How to prevent my fixed navigation menu overlapping the content? =
+
+Insert your menu selector in the Offset field in plugin settings. For example, if you have a fixed menu with id `navigation-menu`, set Offset to `#navigation-menu` in order to stop page scrolling below it and avoid overlapping your content. 
+
+= Can I specify link specific offset values? =
+
+Yes, by adding the html attribute `data-ps2id-offset` to a link. For example, `<a href="#id" rel="m_PageScroll2id" data-ps2id-offset="100">link</a>` will offset scroll-to position by 100 pixels. You may also use the `ps2id` shortcode to create links with specific offsets, e.g. `[ps2id url='#id' offset='100']link[/ps2id]`. 
 
 = Can I use the plugin to scroll an overflowed div? =
 
@@ -110,12 +123,20 @@ Yes but you probably need to implement the plugin in your theme **manually**. Se
 
 == Changelog ==
 
+= 1.5.3 =
+* Extended Offset option to accept element selectors in addition to fixed pixels values. 
+* Added `ps2id` shortcode for creating links in content editor. 
+* Added the ability to define link specific offsets via the html data attribute: `data-ps2id-offset`. 
+* Fixed some minor issues for WordPress versions lower than 3.5. 
+* Updated help and external links. 
+* Changed plugin license from LGPL to MIT. 
+
 = 1.5.2 =
-* Minor code tweaks
+* Minor code tweaks. 
 
 = 1.5.1 =
-* Minor code tweaks
-* Minified scripts
+* Minor code tweaks. 
+* Minified scripts. 
 
 = 1.5.0 =
 * Dropped jQuery UI dependency (jQuery UI is no longer required for the plugin to work). 
@@ -142,6 +163,10 @@ Yes but you probably need to implement the plugin in your theme **manually**. Se
 
 == Upgrade Notice ==
 
+= 1.5.3 =
+
+Extended Offset option, added shortcodes for link creation, updated documentation and added more external resources. 
+
 = 1.5.0 =
 
 Dropped jQuery UI dependency, fixed bugs, added links highlighting, optimized scripts and extended documentation. 
@@ -157,4 +182,9 @@ If not, see <http://www.gnu.org/licenses/>.
 
 == Donate ==
 
-If you like this plugin and find it useful, consider making a [donation](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=UYJ5G65M6ZA28) :).
+If you like this plugin and find it useful, consider making a [donation](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=UYJ5G65M6ZA28) :). 
+
+== External resources ==
+
+* [Smooth scrolling between page sections using Page scroll to id](http://sridharkatakam.com/smooth-scrolling-page-sections-using-page-scroll-id/)
+* [Video tutorial: How to create a single page WordPress website](http://www.pootlepress.com/2013/02/video-tutorial-a-beginners-guide-on-how-to-create-a-single-page-wordpress-website/)
