@@ -1,4 +1,5 @@
 === Page scroll to id ===
+Contributors: malihu
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=UYJ5G65M6ZA28
 Tags: page scrolling, page animation, navigation, single-page navigation
 Requires at least: 3.3
@@ -77,7 +78,7 @@ You can add the `m_PageScroll2id` in your link's rel attribute (along with the o
 
 = How do I highlight current menu items? =
 
-The plugin provides a ready-to-use class for styling highlighted links (the links whose target element is considered to be within the viewport). The default highlight class is `mPS2id-highlight`, so you can use it in your theme's CSS to style current menu items, e.g. `.menu-item a.mPS2id-highlight{ background: #ff0; }`
+The plugin provides a ready-to-use class for styling highlighted links (the links whose target element is considered to be within the viewport). The default highlight class is `mPS2id-highlight`, so you can use it in your theme's CSS to style current menu items, e.g. `.menu-item a.mPS2id-highlight{ background: #ff0; }`. 
 
 = When I click the link, nothing happens... =
 
