@@ -1,4 +1,5 @@
 === Page scroll to id ===
+Contributors: malihu
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=UYJ5G65M6ZA28
 Tags: page scrolling, page animation, navigation, single-page navigation
 Requires at least: 3.3
@@ -65,7 +66,7 @@ Configure plugin options by clicking 'Settings' or through the 'Settings > Page 
 
 = How to use the plugin with WP custom/native menus? =
 
-While on the 'Menus' admin page, click 'Screen Options' and check 'Link Relationship (XFN)'. To enable the plugin on a menu item, click the arrow on the right of the item and insert `m_PageScroll2id` in the 'Link Relationship (XFN)' field (assuming your menu contains links with `URL` value in the form of `#id`). 
+While on the 'Menus' admin page, click 'Screen Options' and check 'Link Relationship (XFN)'. To enable the plugin on a menu item, click the arrow on the right of the item and insert `m_PageScroll2id` in the 'Link Relationship (XFN)' field (assuming your menu contains links with `URL` value in the form of `#id` or `/somepage/#id`). 
 
 = How to use the plugin without editing my theme's markup? =
 
@@ -77,15 +78,15 @@ You can add the `m_PageScroll2id` in your link's rel attribute (along with the o
 
 = How do I highlight current menu items? =
 
-The plugin provides a ready-to-use class for styling highlighted links (the links whose target element is considered to be within the viewport). The default highlight class is `mPS2id-highlight`, so you can use it in your theme's CSS to style current menu items, e.g. `.menu-item a.mPS2id-highlight{ background: #ff0; }`
+The plugin provides a ready-to-use class for styling highlighted links (the links whose target element is considered to be within the viewport). The default highlight class is `mPS2id-highlight`, so you can use it in your theme's CSS to style current menu items, e.g. `.menu-item a.mPS2id-highlight{ background: #ff0; }`. 
 
 = When I click the link, nothing happens... =
 
 Make sure your link has href value `#` with the id of the section you want to scroll-to (e.g. `<a href="#id" rel="m_PageScroll2id">link</a>`) and a section with such an id exists in your page (e.g. `<div id="id">target</div>`). 
 
-= How do I make my links work from other/different pages =
+= How do I make my links work from other/different pages? =
 
-To make your links work from any page, you need to add the full address in your links href (instead of just the hash with the id). For example, you'll need to change `<a href="#id" rel="m_PageScroll2id">link</a>` to something like `<a href="http://mysite.com/some-page/#id" rel="m_PageScroll2id">link</a>`. The same applies for your WP custom menus. You'll need to insert the full address in the `URL` field. 
+To make your links work from any page, you need to add the full (or absolute) address in your links href (instead of just the hash with the id). For example, you'll need to change `<a href="#id" rel="m_PageScroll2id">link</a>` to something like `<a href="http://mysite.com/some-page/#id" rel="m_PageScroll2id">link</a>`. The same applies for your WP custom menus. You'll need to insert the full address in the `URL` field. 
 
 = The page doesn't scroll exactly where I want =
 
