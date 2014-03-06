@@ -2,7 +2,7 @@
 	$(window).load(function(){
 		var _p="mPS2id",
 			_o=mPS2id_params;
-		for(i=0; i<_o.total_instances; i++){
+		for(var i=0; i<_o.total_instances; i++){
 			var shortcodeClass=_o.shortcode_class; // Shortcode without suffix 
 			//var shortcodeClass=_o.shortcode_class+"_"+(i+1); // Shortcode with suffix 
 			$(_o.instances[_p+"_instance_"+i]["selector"]["value"]+",."+shortcodeClass).mPageScroll2id({

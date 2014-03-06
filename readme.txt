@@ -3,10 +3,10 @@ Contributors: malihu
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=UYJ5G65M6ZA28
 Tags: page scrolling, page animation, navigation, single-page navigation
 Requires at least: 3.3
-Tested up to: 3.8
-Stable tag: 1.5.3
-License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Tested up to: 3.8.1
+Stable tag: 1.5.4
+License: The MIT License (MIT)
+License URI: http://opensource.org/licenses/MIT
 
 Page scroll to id is an easy-to-use jQuery plugin that enables animated page scrolling to specific id within the document.
 
@@ -124,6 +124,11 @@ Yes but you probably need to implement the plugin in your theme **manually**. Se
 
 == Changelog ==
 
+= 1.5.4 =
+* Fixed a minor bug in jquery.malihu.PageScroll2id-init.js.
+* updated screenshots.
+* updated readme.txt.
+
 = 1.5.3 =
 * Extended Offset option to accept element selectors in addition to fixed pixels values. 
 * Added `ps2id` shortcode for creating links in content editor. 
@@ -163,6 +168,10 @@ Yes but you probably need to implement the plugin in your theme **manually**. Se
 * Launch!
 
 == Upgrade Notice ==
+
+= 1.5.4 =
+
+Fixed a minor bug in jquery.malihu.PageScroll2id-init.js, updated screenshots and readme.txt.
 
 = 1.5.3 =
 
