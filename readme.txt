@@ -3,8 +3,8 @@ Contributors: malihu
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=UYJ5G65M6ZA28
 Tags: page scrolling, page animation, navigation, single-page navigation
 Requires at least: 3.3
-Tested up to: 3.8.1
-Stable tag: 1.5.4
+Tested up to: 3.9
+Stable tag: 1.5.5
 License: The MIT License (MIT)
 License URI: http://opensource.org/licenses/MIT
 
@@ -86,7 +86,7 @@ Make sure your link has href value `#` with the id of the section you want to sc
 
 = How do I make my links work from other/different pages =
 
-To make your links work from any page, you need to add the full address in your links href (instead of just the hash with the id). For example, you'll need to change `<a href="#id" rel="m_PageScroll2id">link</a>` to something like `<a href="http://mysite.com/some-page/#id" rel="m_PageScroll2id">link</a>`. The same applies for your WP custom menus. You'll need to insert the full address in the `URL` field. 
+To make your links work from any page, you need to add the full address in your links href (instead of just the hash with the id). For example, you'll need to change `<a href="#id" rel="m_PageScroll2id">link</a>` to something like `<a href="http://mysite.com/some-page/#id" rel="m_PageScroll2id">link</a>`. The same applies for your WP custom menus. You'll need to insert the full address in the `URL` field. To enable page scrolling to URL location hash on page load, check `Scroll to location hash` in plugin settings.
 
 = The page doesn't scroll exactly where I want =
 
@@ -99,6 +99,10 @@ Your target element is probably not at the very top (check its position via your
 = How to prevent my fixed navigation menu overlapping the content? =
 
 Insert your menu selector in the Offset field in plugin settings. For example, if you have a fixed menu with id `navigation-menu`, set Offset to `#navigation-menu` in order to stop page scrolling below it and avoid overlapping your content. 
+
+= Can I set different vertical and horizontal offsets? =
+
+Yes, by inserting comma separated values in `Offset` field For example `100,50` will set vertical offset to 100 and horizontal offset to 50 pixels.
 
 = Can I specify link specific offset values? =
 
@@ -124,10 +128,17 @@ Yes but you probably need to implement the plugin in your theme **manually**. Se
 
 == Changelog ==
 
+= 1.5.5 =
+* Fixed contextual help links in plugin settings page.
+* Updated Offset field to accept comma separated values for defining different offsets for vertical and horizontal layout (e.g. `100,50`).
+* Added 'Scroll to location hash' option. When enabled, the plugin will scroll to target id (e.g. `<div id="id" />`) based on location hash (e.g. `mysite.com/mypage#id`) on page load.
+* Updated readme.txt.
+* Updated help.
+
 = 1.5.4 =
 * Fixed a minor bug in jquery.malihu.PageScroll2id-init.js.
-* updated screenshots.
-* updated readme.txt.
+* Updated screenshots.
+* Updated readme.txt.
 
 = 1.5.3 =
 * Extended Offset option to accept element selectors in addition to fixed pixels values. 
@@ -168,6 +179,10 @@ Yes but you probably need to implement the plugin in your theme **manually**. Se
 * Launch!
 
 == Upgrade Notice ==
+
+= 1.5.5 =
+
+Fixed contextual help links in plugin settings, define different offsets for vertical and horizontal layout, Added 'Scroll to location hash' option, updated readme.txt.
 
 = 1.5.4 =
 

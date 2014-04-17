@@ -3,7 +3,7 @@
 Plugin Name: Page scroll to id
 Plugin URI: http://manos.malihu.gr/page-scroll-to-id
 Description: Page scroll to id is an easy-to-use jQuery plugin that enables animated page scrolling to specific id within the document. 
-Version: 1.5.4
+Version: 1.5.5
 Author: malihu
 Author URI: http://manos.malihu.gr
 License: MIT License (MIT)
@@ -45,7 +45,7 @@ if(!class_exists('malihuPageScroll2id')){ // --edit--
 	
 	class malihuPageScroll2id{ // --edit--
 		
-		protected $version='1.5.4'; // Plugin version --edit--
+		protected $version='1.5.5'; // Plugin version --edit--
 		protected $update_option=null;
 		
 		protected $plugin_name='Page scroll to id'; // Plugin name --edit--
@@ -64,8 +64,13 @@ if(!class_exists('malihuPageScroll2id')){ // --edit--
 		protected $plugin_init_script='jquery.malihu.PageScroll2id-init.js'; // Plugin public initialization script --edit--
 		
 		private function __construct(){
+			// Plugin requires PHP version 5.2 or higher
+			if(version_compare(PHP_VERSION, '5.2', '<')){
+				add_action('admin_notices', array($this, 'admin_notice_php_version'));
+				return;
+			}
 			// Plugin requires WP version 3.3 or higher
-			if(get_bloginfo('version') < '3.3'){
+			if(version_compare(get_bloginfo('version'), '3.3', '<')){
 				add_action('admin_notices', array($this, 'admin_notice_wp_version'));
 				return;
 			}
@@ -98,6 +103,11 @@ if(!class_exists('malihuPageScroll2id')){ // --edit--
 			}
 			
 			return self::$instance;
+		}
+		
+		// PHP version notice
+		public function admin_notice_php_version(){
+			_e('<div class="error"><p><strong>'.$this->plugin_name.'</strong> requires PHP version <strong>5.2</strong> or higher.</p></div>', $this->plugin_slug);
 		}
 		
 		// WP version notice
@@ -485,6 +495,7 @@ if(!class_exists('malihuPageScroll2id')){ // --edit--
 			$d10='mPS2id-target';
 			$d11='mPS2id-highlight';
 			$d12='false';
+			$d13='false';
 			// Values
 			switch($action){
 				case 'validate':
@@ -501,6 +512,7 @@ if(!class_exists('malihuPageScroll2id')){ // --edit--
 					$v10=$this->sanitize_input('class', $_POST[$this->db_prefix.$i.'_targetClass'], $d10);
 					$v11=$this->sanitize_input('class', $_POST[$this->db_prefix.$i.'_highlightClass'], $d11);
 					$v12=(isset($_POST[$this->db_prefix.$i.'_forceSingleHighlight'])) ? 'true' : 'false';
+					$v13=(isset($_POST[$this->db_prefix.$i.'_scrollToHash'])) ? 'true' : 'false';
 					break;
 				case 'upgrade':
 					if(isset($old)){
@@ -526,6 +538,7 @@ if(!class_exists('malihuPageScroll2id')){ // --edit--
 					$v10=(isset($j['targetClass'])) ? $j['targetClass']['value'] : $d10;
 					$v11=(isset($j['highlightClass'])) ? $j['highlightClass']['value'] : $d11;
 					$v12=(isset($j['forceSingleHighlight'])) ? $j['forceSingleHighlight']['value'] : $d12;
+					$v13=(isset($j['scrollToHash'])) ? $j['scrollToHash']['value'] : $d13;
 					break;
 				default:
 					$v0=$d0;
@@ -541,6 +554,7 @@ if(!class_exists('malihuPageScroll2id')){ // --edit--
 					$v10=$d10;
 					$v11=$d11;
 					$v12=$d12;
+					$v13=$d13;
 			}
 			// Options array
 			/*
@@ -711,6 +725,18 @@ if(!class_exists('malihuPageScroll2id')){ // --edit--
 					'radio_labels' => null,
 					'field_info' => null,
 					'description' => 'Allow only one highlighted element at a time',
+					'wrapper' => 'fieldset'
+				),
+				'scrollToHash' => array(
+					'value' => $v13,
+					'values' => null,
+					'id' => $this->db_prefix.$i.'_scrollToHash',
+					'field_type' => 'checkbox',
+					'label' => 'Scroll to location hash',
+					'checkbox_label' => 'Enable',
+					'radio_labels' => null,
+					'field_info' => null,
+					'description' => 'Scroll to target id (e.g. <code>&lt;div id="id" /&gt;</code>) based on location hash (e.g. <code>mysite.com/mypage#id</code>) on page load',
 					'wrapper' => 'fieldset'
 				)
 			);

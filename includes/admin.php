@@ -18,7 +18,7 @@ $toggle_instance_title=__('Click to toggle', $this->plugin_slug);
 		<p class="plugin-info"><?php echo $plugin_info; ?></p>
 		<p class="plugin-version">Version <?php echo $this->version; ?></p>
 		
-		<?php if(get_bloginfo('version') < '3.6') : ?>
+		<?php if(version_compare(get_bloginfo('version'), '3.6', '<')) : ?>
 			<div class="oldwp-plugin-help">
 				<!-- --edit-- -->
 				<div class="oldwp-plugin-help-section oldwp-plugin-help-section-overview">

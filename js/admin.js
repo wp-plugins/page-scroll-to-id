@@ -182,7 +182,7 @@
 		});
 		
 		function openHelp(tab){
-			if(wpVersion>=3.6){ //WP Contextual Help
+			if(parseFloat(wpVersion)>=3.6){ //WP Contextual Help
 				if(tab){
 					$("a[href='#tab-panel-page-scroll-to-id"+tab+"']").trigger("click");
 				}else{
