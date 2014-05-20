@@ -13,6 +13,14 @@
 			}else{
 				return val;
 			}
+		},
+		_screen=function(val){
+			if(val.indexOf(",")!==-1){
+				var arr=val.split(","),x=arr[0] || "0",y=arr[1] || "0";
+				return [x,y];
+			}else{
+				return val;
+			}
 		};
 	$(document).ready(function(){
 		for(var k=0; k<_o.total_instances; k++){
@@ -53,7 +61,9 @@
 				clickedClass:_o.instances[_p+"_instance_"+i]["clickedClass"]["value"],
 				targetClass:_o.instances[_p+"_instance_"+i]["targetClass"]["value"],
 				highlightClass:_o.instances[_p+"_instance_"+i]["highlightClass"]["value"],
-				forceSingleHighlight:(_o.instances[_p+"_instance_"+i]["forceSingleHighlight"]["value"]==="true") ? true : false
+				forceSingleHighlight:(_o.instances[_p+"_instance_"+i]["forceSingleHighlight"]["value"]==="true") ? true : false,
+				keepHighlightUntilNext:(_o.instances[_p+"_instance_"+i]["keepHighlightUntilNext"]["value"]==="true") ? true : false,
+				disablePluginBelow:_screen(_o.instances[_p+"_instance_"+i]["disablePluginBelow"]["value"].toString())
 			});
 			//scroll to location hash on page load
 			if(_o.instances[_p+"_instance_"+i]["scrollToHash"]["value"]==="true" && _hash){

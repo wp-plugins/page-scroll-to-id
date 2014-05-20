@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: page scrolling, page animation, navigation, single-page navigation
 Requires at least: 3.3
 Tested up to: 3.9
-Stable tag: 1.5.5
+Stable tag: 1.5.6
 License: The MIT License (MIT)
 License URI: http://opensource.org/licenses/MIT
 
@@ -34,9 +34,9 @@ Page scroll to id requires WordPress version **3.3** or higher and jQuery versio
 = Quick usage =
 
 1. [Install the plugin](http://wordpress.org/plugins/page-scroll-to-id/installation/). 
-2. Add `rel="m_PageScroll2id"` to your links that point to existing sections within your page, making sure each link's href value contains a hash (`#`) with the id of the section you want to scroll-to. 
+2. Add `rel="m_PageScroll2id"` to your links that point to existing sections within your page, making sure each link's href value contains a hash (`#`) with the id of the section you want to scroll-to. To enable the rel attribute field in WordPress Menus, click 'Screen Options' and check 'Link Relationship (XFN)'. To enable the plugin on a menu item, click the arrow on the right of the item and insert `m_PageScroll2id` in the 'Link Relationship (XFN)' field.
 
-For more information see plugin resources below. 
+For more information see Help in plugin settings and resources below. 
 
 = Plugin Resources =
 
@@ -66,7 +66,7 @@ Configure plugin options by clicking 'Settings' or through the 'Settings > Page 
 
 = How to use the plugin with WP custom/native menus? =
 
-While on the 'Menus' admin page, click 'Screen Options' and check 'Link Relationship (XFN)'. To enable the plugin on a menu item, click the arrow on the right of the item and insert `m_PageScroll2id` in the 'Link Relationship (XFN)' field (assuming your menu contains links with `URL` value in the form of `#id`). 
+While on the 'Menus' admin page, click 'Screen Options' and check 'Link Relationship (XFN)'. To enable the plugin on a menu item (added to menu via 'Custom Links' panel), click the arrow on the right of the item and insert `m_PageScroll2id` in the 'Link Relationship (XFN)' field (assuming your menu contains links with `URL` value in the form of `#id`). 
 
 = How to use the plugin without editing my theme's markup? =
 
@@ -79,6 +79,14 @@ You can add the `m_PageScroll2id` in your link's rel attribute (along with the o
 = How do I highlight current menu items? =
 
 The plugin provides a ready-to-use class for styling highlighted links (the links whose target element is considered to be within the viewport). The default highlight class is `mPS2id-highlight`, so you can use it in your theme's CSS to style current menu items, e.g. `.menu-item a.mPS2id-highlight{ background: #ff0; }`. 
+
+= More than one links are highlighted! How to highlight only the first one? =
+
+Use the `mPS2id-highlight-first` class in your stylesheet (instead of just `mPS2id-highlight`). This class is added by the script on the first link whose target element is considered to be within the viewport, e.g. `.menu-item a.mPS2id-highlight-first{ background: #ff0; }`. Alternatively, enable 'Force single highlight' option in plugin settings.
+
+= How to keep my links highlighted when my target elements have 0 height? =
+
+Enable 'Keep highlight until next' option in plugin settings, which keeps the current highlighted element on until the next one comes into view. 
 
 = When I click the link, nothing happens... =
 
@@ -108,6 +116,10 @@ Yes, by inserting comma separated values in `Offset` field For example `100,50` 
 
 Yes, by adding the html attribute `data-ps2id-offset` to a link. For example, `<a href="#id" rel="m_PageScroll2id" data-ps2id-offset="100">link</a>` will offset scroll-to position by 100 pixels. You may also use the `ps2id` shortcode to create links with specific offsets, e.g. `[ps2id url='#id' offset='100']link[/ps2id]`. 
 
+= How do I disable the plugin on small screens? =
+
+Use the 'Disable plugin below screen-size' option in plugin settings. You can set a minimum width,height value required in order to enable plugin functionality.
+
 = Can I use the plugin to scroll an overflowed div? =
 
 No. The plugin scrolls the entire page (the document's root element) so it works correctly highlighting links, alongside deep linking plugins etc. with mouse and touch events. 
@@ -127,6 +139,12 @@ Yes but you probably need to implement the plugin in your theme **manually**. Se
 2. Page scoll to id settings help 
 
 == Changelog ==
+
+= 1.5.6 =
+* Changed the way 'Force single highlight' option works. When enabled, it now highlights the first highlighted element instead of last.
+* Extended highlight and target classes with additional ones in order to differentiate the first and last elements. You can now use `.mPS2id-highlight-first`, `.mPS2id-highlight-last`, `.mPS2id-target-first` and `.mPS2id-target-last` in order to target the first and last highlighted links and targets in your CSS.
+* Added 'Keep highlight until next' option. When enabled, the plugin will keep the current link/target highlighted until the next one comes into view (one element always stays highlighted).
+* Added 'Disable plugin below screen-size' option. Set the screen-size (in pixels), below which the plugin will be disabled. 
 
 = 1.5.5 =
 * Fixed contextual help links in plugin settings page.
@@ -179,6 +197,10 @@ Yes but you probably need to implement the plugin in your theme **manually**. Se
 * Launch!
 
 == Upgrade Notice ==
+
+= 1.5.6 =
+
+'Force single highlight' option will now highlight the first element instead of last, Extended highlight and target classes with additional ones, Added 'Keep highlight until next' and 'Disable plugin below screen-size' options, extended help, updated readme.txt.
 
 = 1.5.5 =
 

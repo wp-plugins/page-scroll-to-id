@@ -3,7 +3,7 @@
 Plugin Name: Page scroll to id
 Plugin URI: http://manos.malihu.gr/page-scroll-to-id
 Description: Page scroll to id is an easy-to-use jQuery plugin that enables animated page scrolling to specific id within the document. 
-Version: 1.5.5
+Version: 1.5.6
 Author: malihu
 Author URI: http://manos.malihu.gr
 License: MIT License (MIT)
@@ -45,7 +45,7 @@ if(!class_exists('malihuPageScroll2id')){ // --edit--
 	
 	class malihuPageScroll2id{ // --edit--
 		
-		protected $version='1.5.5'; // Plugin version --edit--
+		protected $version='1.5.6'; // Plugin version --edit--
 		protected $update_option=null;
 		
 		protected $plugin_name='Page scroll to id'; // Plugin name --edit--
@@ -495,7 +495,9 @@ if(!class_exists('malihuPageScroll2id')){ // --edit--
 			$d10='mPS2id-target';
 			$d11='mPS2id-highlight';
 			$d12='false';
+			$d14='false';
 			$d13='false';
+			$d15=0;
 			// Values
 			switch($action){
 				case 'validate':
@@ -512,7 +514,9 @@ if(!class_exists('malihuPageScroll2id')){ // --edit--
 					$v10=$this->sanitize_input('class', $_POST[$this->db_prefix.$i.'_targetClass'], $d10);
 					$v11=$this->sanitize_input('class', $_POST[$this->db_prefix.$i.'_highlightClass'], $d11);
 					$v12=(isset($_POST[$this->db_prefix.$i.'_forceSingleHighlight'])) ? 'true' : 'false';
+					$v14=(isset($_POST[$this->db_prefix.$i.'_keepHighlightUntilNext'])) ? 'true' : 'false';
 					$v13=(isset($_POST[$this->db_prefix.$i.'_scrollToHash'])) ? 'true' : 'false';
+					$v15=$this->sanitize_input('text', $_POST[$this->db_prefix.$i.'_disablePluginBelow'], $d15);
 					break;
 				case 'upgrade':
 					if(isset($old)){
@@ -538,7 +542,9 @@ if(!class_exists('malihuPageScroll2id')){ // --edit--
 					$v10=(isset($j['targetClass'])) ? $j['targetClass']['value'] : $d10;
 					$v11=(isset($j['highlightClass'])) ? $j['highlightClass']['value'] : $d11;
 					$v12=(isset($j['forceSingleHighlight'])) ? $j['forceSingleHighlight']['value'] : $d12;
+					$v14=(isset($j['keepHighlightUntilNext'])) ? $j['keepHighlightUntilNext']['value'] : $d14;
 					$v13=(isset($j['scrollToHash'])) ? $j['scrollToHash']['value'] : $d13;
+					$v15=(isset($j['disablePluginBelow'])) ? $j['disablePluginBelow']['value'] : $d15;
 					break;
 				default:
 					$v0=$d0;
@@ -554,7 +560,9 @@ if(!class_exists('malihuPageScroll2id')){ // --edit--
 					$v10=$d10;
 					$v11=$d11;
 					$v12=$d12;
+					$v14=$d14;
 					$v13=$d13;
+					$v15=$d15;
 			}
 			// Options array
 			/*
@@ -700,7 +708,7 @@ if(!class_exists('malihuPageScroll2id')){ // --edit--
 					'checkbox_label' => null,
 					'radio_labels' => null,
 					'field_info' => 'class name',
-					'description' => 'Class of the (current) target element',
+					'description' => 'Class of the (current) target element. First (current) target element class suffix: <code>-first</code> (e.g. <code>.mPS2id-target-first</code>). Last (current) target element class suffix: <code>-last</code> (e.g. <code>.mPS2id-target-last</code>)',
 					'wrapper' => null
 				),
 				'highlightClass' => array(
@@ -712,7 +720,7 @@ if(!class_exists('malihuPageScroll2id')){ // --edit--
 					'checkbox_label' => null,
 					'radio_labels' => null,
 					'field_info' => 'class name',
-					'description' => 'Class of the (current) highlighted element',
+					'description' => 'Class of the (current) highlighted element. First (current) highlighted element class suffix: <code>-first</code> (e.g. <code>.mPS2id-highlight-first</code>). Last (current) highlighted element class suffix: <code>-last</code> (e.g. <code>.mPS2id-highlight-last</code>)',
 					'wrapper' => null
 				),
 				'forceSingleHighlight' => array(
@@ -727,6 +735,18 @@ if(!class_exists('malihuPageScroll2id')){ // --edit--
 					'description' => 'Allow only one highlighted element at a time',
 					'wrapper' => 'fieldset'
 				),
+				'keepHighlightUntilNext' => array(
+					'value' => $v14,
+					'values' => null,
+					'id' => $this->db_prefix.$i.'_keepHighlightUntilNext',
+					'field_type' => 'checkbox',
+					'label' => '',
+					'checkbox_label' => 'Keep highlight until next',
+					'radio_labels' => null,
+					'field_info' => null,
+					'description' => 'Keep the current element highlighted until the next one comes into view',
+					'wrapper' => 'fieldset'
+				),
 				'scrollToHash' => array(
 					'value' => $v13,
 					'values' => null,
@@ -738,6 +758,18 @@ if(!class_exists('malihuPageScroll2id')){ // --edit--
 					'field_info' => null,
 					'description' => 'Scroll to target id (e.g. <code>&lt;div id="id" /&gt;</code>) based on location hash (e.g. <code>mysite.com/mypage#id</code>) on page load',
 					'wrapper' => 'fieldset'
+				),
+				'disablePluginBelow' => array(
+					'value' => $v15,
+					'values' => null,
+					'id' => $this->db_prefix.$i.'_disablePluginBelow',
+					'field_type' => 'text',
+					'label' => 'Disable plugin below',
+					'checkbox_label' => null,
+					'radio_labels' => null,
+					'field_info' => 'screen-size',
+					'description' => 'Set the width,height screen-size (in pixels), below which the plugin will be disabled (e.g. <code>1024</code>, <code>1024,600</code>)',
+					'wrapper' => null
 				)
 			);
 		}

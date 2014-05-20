@@ -48,7 +48,7 @@ $help_plugin_settings_text=<<<EOD
 
 <p>
 	<strong>Classes</strong> - 
-	Set the classes added to links by the plugin: 
+	Set the classes added to links and targets by the plugin: 
 </p>
 
 <ol>
@@ -58,13 +58,26 @@ $help_plugin_settings_text=<<<EOD
 </ol>
 
 <p>
-	By checking "Force single highlight", only one highlighted element is allowed at a time.
+	In addition, the plugin will add the above classes with the <code>-first</code> and <code>-last</code> suffix (e.g. <code>mPS2id-highlight-first</code>, <code>mPS2id-highlight-last</code>) in order to differentiate multiple highlighted elements. This is useful when you need to style only the first or last of the highlighted links or targets in your CSS.
+</p>
+
+<p>
+	By checking "Force single highlight", only one highlighted element (the first one) is allowed at a time.
+</p>
+
+<p>
+	Check "Keep highlight until next" when you need to keep the current element highlighted until the next one comes into view. This way at least one element always stays highlighted.
 </p>
 
 <p>
 	<strong>Scroll to location hash</strong> - 
 	Scrolls to target id (e.g. <code>&lt;div id="id" /&gt;</code>) based on location hash (e.g. <code>mysite.com/mypage#id</code>) on page load. <br />
 	Enable when you need to scroll to an id in another page. 
+</p>
+
+<p>
+	<strong>Disable plugin below screen-size</strong> - 
+	Set a minimum width and/or height screen-size (in pixels) that's required for the plugin to be enabled. For example, insert <code>1024</code> to disable plugin functionality when window width is below 1024 pixels or <code>1024,600</code> to disable plugin when window width/height is below 1024 and 600 pixels respectively. Leave field value empty or set to 0 to disable.<br />
 </p>
 
 EOD;
