@@ -3,7 +3,7 @@ Contributors: malihu
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=UYJ5G65M6ZA28
 Tags: page scrolling, page animation, navigation, single-page navigation
 Requires at least: 3.3
-Tested up to: 3.9
+Tested up to: 4.0
 Stable tag: 1.5.6
 License: The MIT License (MIT)
 License URI: http://opensource.org/licenses/MIT
