@@ -63,6 +63,7 @@
 				highlightClass:_o.instances[_p+"_instance_"+i]["highlightClass"]["value"],
 				forceSingleHighlight:(_o.instances[_p+"_instance_"+i]["forceSingleHighlight"]["value"]==="true") ? true : false,
 				keepHighlightUntilNext:(_o.instances[_p+"_instance_"+i]["keepHighlightUntilNext"]["value"]==="true") ? true : false,
+				highlightByNextTarget:(_o.instances[_p+"_instance_"+i]["highlightByNextTarget"]["value"]==="true") ? true : false,
 				disablePluginBelow:_screen(_o.instances[_p+"_instance_"+i]["disablePluginBelow"]["value"].toString())
 			});
 			//scroll to location hash on page load

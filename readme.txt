@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: page scrolling, page animation, navigation, single-page navigation
 Requires at least: 3.3
 Tested up to: 4.0
-Stable tag: 1.5.6
+Stable tag: 1.5.7
 License: The MIT License (MIT)
 License URI: http://opensource.org/licenses/MIT
 
@@ -140,6 +140,10 @@ Yes but you probably need to implement the plugin in your theme **manually**. Se
 
 == Changelog ==
 
+= 1.5.7 =
+* Added 'Highlight by next target' option. When enabled, highlight elements according to their target and next target position (useful when targets have zero dimensions).
+* Extended `ps2id` shortcode for creating targets in content editor. 
+
 = 1.5.6 =
 * Changed the way 'Force single highlight' option works. When enabled, it now highlights the first highlighted element instead of last.
 * Extended highlight and target classes with additional ones in order to differentiate the first and last elements. You can now use `.mPS2id-highlight-first`, `.mPS2id-highlight-last`, `.mPS2id-target-first` and `.mPS2id-target-last` in order to target the first and last highlighted links and targets in your CSS.
@@ -197,6 +201,10 @@ Yes but you probably need to implement the plugin in your theme **manually**. Se
 * Launch!
 
 == Upgrade Notice ==
+
+= 1.5.7 =
+
+Added 'Highlight by next target' option and extended `ps2id` shortcode for creating targets in content editor. 
 
 = 1.5.6 =
 

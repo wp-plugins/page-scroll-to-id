@@ -70,6 +70,10 @@ $help_plugin_settings_text=<<<EOD
 </p>
 
 <p>
+	Check "Highlight by next target" when your target elements have zero height and/or width to enable better highlighting. This option is similar to "Keep highlight until next" but it's especially useful when your target elements are in the form of <code>&lt;a id='id'&gt;&lt;/a&gt;</code>.
+</p>
+
+<p>
 	<strong>Scroll to location hash</strong> - 
 	Scrolls to target id (e.g. <code>&lt;div id="id" /&gt;</code>) based on location hash (e.g. <code>mysite.com/mypage#id</code>) on page load. <br />
 	Enable when you need to scroll to an id in another page. 
