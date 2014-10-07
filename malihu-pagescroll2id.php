@@ -3,7 +3,7 @@
 Plugin Name: Page scroll to id
 Plugin URI: http://manos.malihu.gr/page-scroll-to-id
 Description: Page scroll to id is an easy-to-use jQuery plugin that enables animated page scrolling to specific id within the document. 
-Version: 1.5.7
+Version: 1.5.8
 Author: malihu
 Author URI: http://manos.malihu.gr
 License: MIT License (MIT)
@@ -45,7 +45,7 @@ if(!class_exists('malihuPageScroll2id')){ // --edit--
 	
 	class malihuPageScroll2id{ // --edit--
 		
-		protected $version='1.5.7'; // Plugin version --edit--
+		protected $version='1.5.8'; // Plugin version --edit--
 		protected $update_option=null;
 		
 		protected $plugin_name='Page scroll to id'; // Plugin name --edit--
@@ -334,17 +334,19 @@ if(!class_exists('malihuPageScroll2id')){ // --edit--
 		
 		public function validate_plugin_settings(){
 			if(!empty($_POST)){
-				if($_POST[$this->db_prefix.'reset']==='true' ){ 
+				if(isset($_POST[$this->db_prefix.'reset']) && $_POST[$this->db_prefix.'reset']==='true'){ 
 					// Reset all to default
 					$_POST[$this->db_prefix.'instances']=$this->default; 
 				}else{ 
 					// Update settings array
-					$instances=$_POST[$this->db_prefix.'total_instances'];
-					for($i=0; $i<$instances; $i++){
-						$instance=$this->plugin_options_array('validate',$i,null,null);
-						$update[$this->pl_pfx.'instance_'.$i]=$instance;
+					if(isset($_POST[$this->db_prefix.'total_instances'])){
+						$instances=$_POST[$this->db_prefix.'total_instances'];
+						for($i=0; $i<$instances; $i++){
+							$instance=$this->plugin_options_array('validate',$i,null,null);
+							$update[$this->pl_pfx.'instance_'.$i]=$instance;
+						}
+						$_POST[$this->db_prefix.'instances']=$update; // Save array to plugin option
 					}
-					$_POST[$this->db_prefix.'instances']=$update; // Save array to plugin option
 				}
 			}
 		}

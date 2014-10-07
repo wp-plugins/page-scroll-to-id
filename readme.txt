@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: page scrolling, page animation, navigation, single-page navigation
 Requires at least: 3.3
 Tested up to: 4.0
-Stable tag: 1.5.7
+Stable tag: 1.5.8
 License: The MIT License (MIT)
 License URI: http://opensource.org/licenses/MIT
 
@@ -140,6 +140,10 @@ Yes but you probably need to implement the plugin in your theme **manually**. Se
 
 == Changelog ==
 
+= 1.5.8 =
+* Fixed various PHP notices in debug mode. 
+* Minor script optimizations. 
+
 = 1.5.7 =
 * Added 'Highlight by next target' option. When enabled, highlight elements according to their target and next target position (useful when targets have zero dimensions).
 * Extended `ps2id` shortcode for creating targets in content editor. 
@@ -201,6 +205,10 @@ Yes but you probably need to implement the plugin in your theme **manually**. Se
 * Launch!
 
 == Upgrade Notice ==
+
+= 1.5.8 =
+
+Fixed various PHP notices in debug mode, minor script optimizations.  
 
 = 1.5.7 =
 
