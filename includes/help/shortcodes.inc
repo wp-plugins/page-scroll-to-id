@@ -26,7 +26,7 @@ $help_shortcodes_text=<<<EOD
 </ul>
 
 <p>
-	<strong>Create target</strong> - <code>[ps2id id='#id' target='']</code>
+	<strong>Create target</strong> - <code>[ps2id id='id' target='']</code>
 </p>
 
 <p>
@@ -46,6 +46,16 @@ $help_shortcodes_text=<<<EOD
 			<code>[ps2id id='some-id' target='#another-id']</code> - set the target as the element with id: another-id 
 	</li>
 </ul>
+
+<p>
+	<strong>Create target wrapper</strong> - <code>[ps2id_wrap id='id']content[/ps2id_wrap]</code>
+</p>
+
+<p>
+	Examples: <br /> 
+	<code>[ps2id_wrap id='some-id'] content... [/ps2id_wrap]</code> <br />
+	<code>[ps2id_wrap id='another-id'] content... [ps2id url='#id']link[/ps2id] [/ps2id_wrap]</code> 
+</p>
 
 EOD;
 ?>

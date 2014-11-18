@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: page scrolling, page animation, navigation, single-page navigation
 Requires at least: 3.3
 Tested up to: 4.0
-Stable tag: 1.5.8
+Stable tag: 1.5.9
 License: The MIT License (MIT)
 License URI: http://opensource.org/licenses/MIT
 
@@ -35,6 +35,10 @@ Page scroll to id requires WordPress version **3.3** or higher and jQuery versio
 
 1. [Install the plugin](http://wordpress.org/plugins/page-scroll-to-id/installation/). 
 2. Add `rel="m_PageScroll2id"` to your links that point to existing sections within your page, making sure each link's href value contains a hash (`#`) with the id of the section you want to scroll-to. To enable the rel attribute field in WordPress Menus, click 'Screen Options' and check 'Link Relationship (XFN)'. To enable the plugin on a menu item, click the arrow on the right of the item and insert `m_PageScroll2id` in the 'Link Relationship (XFN)' field.
+
+= Tutorials =
+
+* [Page scroll to id for WordPress tutorial](http://manos.malihu.gr/page-scroll-to-id-for-wordpress-tutorial/)
 
 For more information see Help in plugin settings and resources below. 
 
@@ -140,6 +144,13 @@ Yes but you probably need to implement the plugin in your theme **manually**. Se
 
 == Changelog ==
 
+= 1.5.9 =
+* Extended `ps2id` shortcode for creating `div` elements (in addition to anchors). 
+* Added `ps2id_wrap` shortcode for creating target wrappers in content editor. 
+* Extended offset selector expressions with `:position`, `:height()` and `:width()`.
+* Updated readme.txt.
+* Updated help.
+
 = 1.5.8 =
 * Fixed various PHP notices in debug mode. 
 * Minor script optimizations. 
@@ -205,6 +216,10 @@ Yes but you probably need to implement the plugin in your theme **manually**. Se
 * Launch!
 
 == Upgrade Notice ==
+
+= 1.5.9 =
+
+Extended `ps2id` shortcode, added `ps2id_wrap` shortcode, extended offset selector expressions, updated help and readme.txt.
 
 = 1.5.8 =
 

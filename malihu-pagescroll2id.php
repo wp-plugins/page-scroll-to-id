@@ -3,7 +3,7 @@
 Plugin Name: Page scroll to id
 Plugin URI: http://manos.malihu.gr/page-scroll-to-id
 Description: Page scroll to id is an easy-to-use jQuery plugin that enables animated page scrolling to specific id within the document. 
-Version: 1.5.8
+Version: 1.5.9
 Author: malihu
 Author URI: http://manos.malihu.gr
 License: MIT License (MIT)
@@ -45,7 +45,7 @@ if(!class_exists('malihuPageScroll2id')){ // --edit--
 	
 	class malihuPageScroll2id{ // --edit--
 		
-		protected $version='1.5.8'; // Plugin version --edit--
+		protected $version='1.5.9'; // Plugin version --edit--
 		protected $update_option=null;
 		
 		protected $plugin_name='Page scroll to id'; // Plugin name --edit--
@@ -307,11 +307,14 @@ if(!class_exists('malihuPageScroll2id')){ // --edit--
 		
 		public function add_plugin_shortcode(){
 			$pl_shortcodes=array();
+			$pl_shortcodes_b=array();
 			$instances=get_option($this->db_prefix.'instances');
 			for($i=1; $i<=count($instances); $i++){
 				$pl_shortcodes[]='pl_shortcode_fn_'.$i;
+				$pl_shortcodes_b[]='pl_shortcode_fn_'.$i;
 				// --edit--
 				$tag=$shortcode_class=$this->sc_pfx; // Shortcode without suffix 
+				$tag_b=$this->sc_pfx.'_wrap'; // Shortcode without suffix 
 				//$tag=$shortcode_class=$this->sc_pfx.'_'.$i; // Shortcode with suffix 
 				$pl_shortcodes[$i]=create_function('$atts,$content=null','
 					extract(shortcode_atts(array( 
@@ -323,12 +326,27 @@ if(!class_exists('malihuPageScroll2id')){ // --edit--
 						"target" => "",
 					), $atts));
 					if($id!==""){
-						return "<a id=\"".$id."\" data-ps2id-target=\"".sanitize_text_field($target)."\">".do_shortcode($content)."</a>";
+						if($content){
+							return "<div id=\"".$id."\" data-ps2id-target=\"".sanitize_text_field($target)."\">".do_shortcode($content)."</div>";
+						}else{
+							return "<a id=\"".$id."\" data-ps2id-target=\"".sanitize_text_field($target)."\">".do_shortcode($content)."</a>";
+						}
 					}else{
 						return "<a href=\"".$url."\" class=\"".$shortcode_class."\" data-ps2id-offset=\"".esc_attr($offset)."\">".do_shortcode($content)."</a>";
 					}
 				');
 				add_shortcode($tag, $pl_shortcodes[$i]);
+				$pl_shortcodes_b[$i]=create_function('$atts,$content=null','
+					extract(shortcode_atts(array( 
+						"i" => "'.$i.'",
+						"id" => "",
+						"target" => "",
+					), $atts));
+					if($id!==""){
+						return "<div id=\"".$id."\" data-ps2id-target=\"".sanitize_text_field($target)."\">".do_shortcode($content)."</div>";
+					}
+				');
+				add_shortcode($tag_b, $pl_shortcodes_b[$i]);
 			}
 		}
 		

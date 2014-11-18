@@ -40,6 +40,17 @@ $help_plugin_settings_text=<<<EOD
 </p>
 
 <p>
+	The plugin offers few extra selector expressions in order to define more advanced offsets. Examples: 
+</p>
+
+<ul>
+	<li>Offset by element with id "some-id" and CSS position fixed: <code>#some-id:fixed</code> </li>
+	<li>Offset by element with class "class-name" and height equal to 100 pixels: <code>.class-name:height(100)</code> </li>
+	<li>Offset by element with id "some-id" and width greater than 800 pixels: <code>#some-id:width(>800)</code> </li>
+	<li>Offset by element with id "some-id", CSS position fixed and height between 50 and 100 pixels: <code>#some-id:fixed:height(>50):height(<100)</code> </li>
+</ul>
+
+<p>
 	<strong>Highlight selector(s)</strong> - 
 	The matching set of elements already handled by the plugin (defined in Selector(s) field) that will be highlighted. <br /> 
 	The plugin adds a class (specified in Classes fields) on the links whose target elements are considered to be within the viewport. Highlight selector(s) specifies those links. <br />

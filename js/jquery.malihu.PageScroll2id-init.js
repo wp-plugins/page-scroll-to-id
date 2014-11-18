@@ -79,4 +79,24 @@
 			}
 		}
 	});
+	//extend jQuery's selectors
+	$.extend($.expr[":"],{
+		//position based - e.g. :fixed
+		absolute:$.expr[":"].absolute || function(el){return $(el).css("position")==="absolute";},
+		relative:$.expr[":"].relative || function(el){return $(el).css("position")==="relative";},
+		static:$.expr[":"].static || function(el){return $(el).css("position")==="static";},
+		fixed:$.expr[":"].fixed || function(el){return $(el).css("position")==="fixed";},
+		//width based - e.g. :width(200), :width(>200), :width(>200):width(<300) etc.
+		width:$.expr[":"].width || function(a,i,m){
+			var val=m[3].replace("&lt;","<").replace("&gt;",">");
+			if(!val){return false;}
+			return val.substr(0,1)===">" ? $(a).width()>val.substr(1) : val.substr(0,1)==="<" ? $(a).width()<val.substr(1) : $(a).width()===parseInt(val);
+		},
+		//height based - e.g. :height(200), :height(>200), :height(>200):height(<300) etc.
+		height:$.expr[":"].height || function(a,i,m){
+			var val=m[3].replace("&lt;","<").replace("&gt;",">");
+			if(!val){return false;}
+			return val.substr(0,1)===">" ? $(a).height()>val.substr(1) : val.substr(0,1)==="<" ? $(a).height()<val.substr(1) : $(a).height()===parseInt(val);
+		}
+	});
 })(jQuery);
